@@ -13,6 +13,13 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+/**
+ * @author Spencer Lay - A02217251
+ * @version 1.0
+ *
+ * I created this using the NetBeans FXML to Java plugin because
+ * SceneBuilder was giving me the middle finger.
+ */
 public abstract class Settings extends TabPane {
 
     protected final Tab tab;

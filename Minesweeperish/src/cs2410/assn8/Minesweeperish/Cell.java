@@ -111,7 +111,6 @@ public class Cell extends Button implements GamePart {
 
     /**
      * Returns whether the cell is a bomb or not.
-     * @return if cell is a bomb
      */
     public boolean isBomb()
     {
@@ -120,8 +119,8 @@ public class Cell extends Button implements GamePart {
 
     /**
      * Changes the current state of the cell.
-     *      EMPTY->FLAG->QUESTIONED->BOMB->EMPTY
-     *      @return void
+     *      EMPTY to FLAG to QUESTIONED to EMPTY
+     *
      */
     public void cycleState()
     {

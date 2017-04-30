@@ -7,7 +7,11 @@ import javafx.stage.Stage;
 import java.util.Timer;
 
 /**
- * Created by spenc on 4/28/2017.
+ * @author Spencer Lay - A02217251
+ * @version 1.0
+ *
+ * A generic "Game" class.
+ *  Specialized for Minesweeper.
  */
 public class Game implements GamePart
 {

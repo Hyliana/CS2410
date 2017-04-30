@@ -11,7 +11,11 @@ import static cs2410.assn8.Minesweeperish.Game.SIZE_MEDIUM;
 import static cs2410.assn8.Minesweeperish.Game.SIZE_SMALL;
 
 /**
- * Created by spenc on 4/28/2017.
+ * @author Spencer Lay - A02217251
+ * @version 1.0
+ *
+ * Cell grid is a GridPane that takes care of its own
+ * cell creation for Minesweeper.
  */
 public class CellGrid extends GridPane implements GamePart{
     private Game myGame;

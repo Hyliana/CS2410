@@ -8,7 +8,7 @@ import javafx.stage.Stage;
  * @author Spencer Lay - A02217251
  * @version 1.0
  *
- * A simple interface to initialize from the JavaFX Scences built in SceneBuilder
+ * A simple UI to control the program from.
  */
 
 public class Controller extends ControllerBase

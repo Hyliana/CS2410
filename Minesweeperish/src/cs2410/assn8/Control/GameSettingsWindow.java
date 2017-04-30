@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
  * @author Spencer Lay - A02217251
  * @version 1.0
  *
- * A simple interface to play with settings.
+ * A simple UI to play with settings.
  */
 public class GameSettingsWindow extends Settings{
 

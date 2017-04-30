@@ -9,6 +9,13 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+/**
+ * @author Spencer Lay - A02217251
+ * @version 1.0
+ *
+ * I created this using the NetBeans FXML to Java plugin because
+ * SceneBuilder was giving me the middle finger.
+ */
 public abstract class ControllerBase extends BorderPane {
 
     protected final FlowPane flowPane;

@@ -12,6 +12,12 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 
+/**
+ * @author Spencer Lay - A02217251
+ * @version 1.0
+ *
+ * Launcher for Minesweeperish.
+ */
 public class Main extends Application {
     BorderPane scenePanel = new BorderPane();
     @Override
