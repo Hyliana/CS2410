@@ -117,19 +117,17 @@ public class CellGrid extends GridPane implements GamePart{
             {
                 for(int y = 0; y < h; y++)
                 {
-                    if(!(at(x, y).getDisplayState() == Cell.FLAG && at(x, y).isBomb()))
+                    if(cells[x][y].getDisplayState() == Cell.FLAG && !cells[x][y].isBomb())
                     {
                         won = false;
                     }
                 }
             }
-        }
-
-        if(won)
-        {
-
-            myGame.end();
-            displayWinAlert();
+            if(won)
+            {
+                myGame.end();
+                displayWinAlert();
+            }
         }
     }
 
@@ -199,8 +197,8 @@ public class CellGrid extends GridPane implements GamePart{
     private void displayWinAlert()
     {
         Alert a = new Alert(Alert.AlertType.INFORMATION);
-        a.setTitle("You win!");
-        a.setContentText("You won!\n" + getGame().getTime() + " seconds");
+        a.setHeaderText("You won!");
+        a.setContentText(getGame().getTime() + " seconds");
         a.showAndWait();
     }
 }

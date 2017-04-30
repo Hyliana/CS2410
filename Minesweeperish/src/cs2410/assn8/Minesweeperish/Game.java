@@ -135,7 +135,7 @@ public class Game implements GamePart
         {
             w = 25;
             h = 25;
-//            getController().setStageDimensions(600, 600);
+            getController().setStageDimensions(800, 800);
         }
         if(getSizeMode() == SIZE_LARGE)
         {
