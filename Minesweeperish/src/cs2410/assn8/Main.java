@@ -31,12 +31,11 @@ public class Main extends Application {
         scenePanel.setMaxWidth(primaryStage.getWidth()-12);
         scenePanel.setMaxHeight(primaryStage.getHeight()-64-12);
 
-        Game game = new Game(primaryStage);
+        Game game = new Game(primaryStage, scenePanel);
         Controller ctrl = new Controller(game, primaryStage);
         game.setController(ctrl);
 
-
-        CellGrid initGrid = new CellGrid(20, 20, 0.25f, game);
+        CellGrid initGrid = new CellGrid(5, 5, (float)(1/25), game);
         initGrid.setMinWidth(scenePanel.getWidth());
         game.setGameGrid(initGrid);
 

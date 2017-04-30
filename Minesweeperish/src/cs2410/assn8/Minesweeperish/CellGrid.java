@@ -1,6 +1,7 @@
 package cs2410.assn8.Minesweeperish;
 
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.GridPane;
 
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class CellGrid extends GridPane implements GamePart{
                 h,  // Height
                 a;  // Area
     private int bombCount; // The number of bombs found on this instance of the grid.
+    private int remainingBombs;
 
     private Cell[][] cells;
 
@@ -38,7 +40,8 @@ public class CellGrid extends GridPane implements GamePart{
         w = width;
         h = height;
         a = w*h;
-        bombCount = (int)(a*ratio); // Truancates the float result to get the number of bombs on the board.
+        bombCount = (int)(a*ratio);// Truancates the float result to get the number of bombs on the board.
+        remainingBombs = bombCount;
         cells = new Cell[w][h];
         this.setAlignment(Pos.CENTER);
 
@@ -48,6 +51,8 @@ public class CellGrid extends GridPane implements GamePart{
         loadBombs();
         generateLayout();
     }
+
+
 
     public Cell at(int xpos, int ypos)
     {
@@ -103,12 +108,42 @@ public class CellGrid extends GridPane implements GamePart{
         }
     }
 
+    public void check()
+    {
+        boolean won = true;
+        if(remainingBombs == 0)
+        {
+            for(int x = 0; x < w; x++)
+            {
+                for(int y = 0; y < h; y++)
+                {
+                    if(!(at(x, y).getDisplayState() == Cell.FLAG && at(x, y).isBomb()))
+                    {
+                        won = false;
+                    }
+                }
+            }
+        }
 
+        if(won)
+        {
+
+            myGame.end();
+            displayWinAlert();
+        }
+    }
+
+    public int getRemainingBombs()
+    {
+        return remainingBombs;
+    }
 
     public Game getGame()
     {
         return myGame;
     }
+
+
 
     private void generateLayout()
     {
@@ -122,26 +157,19 @@ public class CellGrid extends GridPane implements GamePart{
         }
     }
 
+    public void decrementRemainingBombs()
+    {
+        remainingBombs--;
+    }
+
+    public void incrememntRemainingBombs()
+    {
+        remainingBombs++;
+    }
+
     @Override
     public void reset() {
-        if(myGame.getSizeMode() == SIZE_SMALL)
-        {
-            w = 10;
-            h = 10;
-        }
-        if(myGame.getSizeMode() == SIZE_MEDIUM)
-        {
-            w = 25;
-            h = 25;
-        }
-        if(myGame.getSizeMode() == SIZE_LARGE)
-        {
-            w = 50;
-            h = 25;
-        }
-
-        loadBombs();
-        generateLayout();
+        //taken care of by game
     }
 
     @Override
@@ -166,5 +194,13 @@ public class CellGrid extends GridPane implements GamePart{
                 cells[x][y].end();
             }
         }
+    }
+
+    private void displayWinAlert()
+    {
+        Alert a = new Alert(Alert.AlertType.INFORMATION);
+        a.setTitle("You win!");
+        a.setContentText("You won!\n" + getGame().getTime() + " seconds");
+        a.showAndWait();
     }
 }

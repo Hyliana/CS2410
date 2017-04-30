@@ -28,12 +28,13 @@ public class Game implements GamePart
 
     private Timer timer;
     private long score;
-    CellGrid gameGrid;
-    Controller controller;
-    BorderPane gameBorderPane;
-    Stage myStage;
+    private CellGrid gameGrid;
+    private Controller controller;
+    private BorderPane gameBorderPane;
+    private Stage myStage;
 
-    public Game(Stage myStage){
+    public Game(Stage myStage, BorderPane pane){
+        this.gameBorderPane = pane;
         this.myStage = myStage;
         score = 0;
         gameIsLive = false;
@@ -49,6 +50,8 @@ public class Game implements GamePart
 
     public long getScore() { return score; }
     public boolean isLive() { return gameIsLive; }
+    public long getTime() { return time; }
+
 
     public void setSoundEnabled(boolean value)
     {
@@ -78,13 +81,13 @@ public class Game implements GamePart
         switch (difficulty)
         {
             case EASY:
-                currentDifficultyBombRatio = 0.25f;
+                currentDifficultyBombRatio = 0.1f;
                 break;
             case NORMAL:
-                currentDifficultyBombRatio = 0.45f;
+                currentDifficultyBombRatio = 0.2f;
                 break;
             case HARD:
-                currentDifficultyBombRatio = 0.655f;
+                currentDifficultyBombRatio = 0.45f;
                 break;
         }
     }
@@ -115,11 +118,36 @@ public class Game implements GamePart
         return sizeMode;
     }
 
+    public Controller getController() {
+        return controller;
+    }
+
     @Override
     public void reset() {
+        int w = 5, h = 5;
+        if(getSizeMode() == SIZE_SMALL)
+        {
+            w = 10;
+            h = 10;
+//            getController().setStageDimensions(400, 400);
+        }
+        if(getSizeMode() == SIZE_MEDIUM)
+        {
+            w = 25;
+            h = 25;
+//            getController().setStageDimensions(600, 600);
+        }
+        if(getSizeMode() == SIZE_LARGE)
+        {
+            w = 50;
+            h = 25;
+            getController().setStageDimensions(1500, 800);
+        }
+        CellGrid newGrid = new CellGrid(w, h, currentDifficultyBombRatio, this);
+        setGameGrid(newGrid);
 
-        gameGrid.reset();
-        gameBorderPane.setCenter((gameGrid));
+        gameGrid.start();
+        gameBorderPane.setCenter(newGrid);
 
         score = 0;
         gameIsLive = false;

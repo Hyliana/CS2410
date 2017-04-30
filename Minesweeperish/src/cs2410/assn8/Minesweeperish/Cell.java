@@ -22,7 +22,7 @@ public class Cell extends Button implements GamePart {
     private int liveNeighborCount = 0;
     private int displayState = 0;
     private int x, y;
-    private static final int EMPTY = 0, FLAG = 1, QUESTIONED = 2, EXPOSED = 3;
+    public static final int EMPTY = 0, FLAG = 1, QUESTIONED = 2, EXPOSED = 3;
     private boolean bomb, exposed;
     private ImageView flagGraphic, bombGraphic, questionGraphic;
 
@@ -135,9 +135,12 @@ public class Cell extends Button implements GamePart {
                 break;
             case FLAG:
                 this.setGraphic(flagGraphic);
+                myGrid.decrementRemainingBombs();
+                myGrid.check();
                 break;
             case QUESTIONED:
                 this.setGraphic(questionGraphic);
+                myGrid.incrememntRemainingBombs();
                 break;
         }
     }
@@ -218,7 +221,11 @@ public class Cell extends Button implements GamePart {
     public void hide()
     {
         displayState = EMPTY;
-        this.setStyle("-fx-background-color: #777777; -fx-text-fill: #FFFFFF");
+        this.setStyle("-fx-background-color: #999999; -fx-text-fill: #FFFFFF");
+    }
+
+    public int getDisplayState() {
+        return displayState;
     }
 
     public int getLiveNeighbors()
